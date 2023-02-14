@@ -4,8 +4,13 @@ class BST:
         self.l_child = None
         self.r_child = None
 
+    def insert(self, data):
+        if self.key is None:
+            self.key = data
+            return
+        
 
-root = BST(1)
-print(root.key)
+root = BST(None)
+root.insert(10)
 print(root.l_child)
 print(root.r_child)

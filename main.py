@@ -8,7 +8,19 @@ class BST:
         if self.key is None:
             self.key = data
             return
-        
+
+        if self.key > data:
+            if self.l_child:
+                self.l_child.insert(data)
+            else:
+                self.l_child = BST(data)
+
+        if self.key < data:
+            if self.r_child:
+                self.r_child.insert(data)
+            else:
+                self.r_child = BST(data)
+
 
 root = BST(None)
 root.insert(10)

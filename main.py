@@ -8,6 +8,9 @@ class BST:
         if self.key is None:
             self.key = data
             return
+        
+        if self.key == data:
+            return
 
         if self.key > data:
             if self.l_child:

@@ -5,6 +5,11 @@ class BST:
         self.r_child = None  # it is a pointer having address of subtree to right
 
     def insert(self, data):
+
+        # 10
+        #    # 20
+        #          # 30
+
         if self.key is None:
             self.key = data
             return
@@ -14,9 +19,9 @@ class BST:
 
         if self.key > data:  # it checks if key is greater than data - subtree goes left
             if self.l_child:  # it checks if root left of BST has child tree or none?
-                self.l_child.insert(data)  # if present, it inserts data there
+                self.l_child.insert(data)  # if present, it calls the insert function - and imply same steps as above
             else:
-                self.l_child = BST(data)  # if left pointer of root is none then adds a sub tress to it
+                self.l_child = BST(data)  # if left pointer root is none, it adds sub tress to it along data(key/value)
 
         if self.key < data:
             if self.r_child:

@@ -29,9 +29,26 @@ class BST:
             else:
                 self.r_child = BST(data)
 
+    def search(self, data):
+        if self.key == data:
+            print(f'Data found! {data}')
+            return
+        if data < self.key:
+            if self.l_child:
+                self.l_child.search(data)
+            else:
+                print("Node is not present in the tree.")
+        else:
+            if self.r_child:
+                self.r_child.search(data)
+            else:
+                print("Node is not present in the tree.")
+
 
 root = BST(10)
 list_one = [30, 10, 60, 50, 80, 90, 0, 5]
 
 for i in list_one:
     root.insert(i)
+
+root.search(60)

@@ -13,10 +13,10 @@ class BST:
             return
 
         if self.key > data:  # it checks if key is greater than data - subtree goes left
-            if self.l_child:  # it checks if left child of BST is present or not
+            if self.l_child:  # it checks if root left of BST has child tree or none?
                 self.l_child.insert(data)  # if present, it inserts data there
             else:
-                self.l_child = BST(data)  # if left child is none (none by default) it adds BST - sub tress there
+                self.l_child = BST(data)  # if left pointer of root is none then adds a sub tress to it
 
         if self.key < data:
             if self.r_child:

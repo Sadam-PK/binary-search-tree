@@ -44,6 +44,13 @@ class BST:
             else:
                 print("Node is not present in the tree.")
 
+    def preorder(self):
+        print(self.key)
+        if self.l_child:
+            self.l_child.preorder()
+        if self.r_child:
+            self.r_child.preorder()
+
 
 root = BST(10)
 list_one = [30, 10, 60, 50, 80, 90, 0, 5]
@@ -51,4 +58,4 @@ list_one = [30, 10, 60, 50, 80, 90, 0, 5]
 for i in list_one:
     root.insert(i)
 
-root.search(60)
+root.preorder()

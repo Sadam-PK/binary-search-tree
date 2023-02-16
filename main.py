@@ -66,6 +66,36 @@ class BST:
             self.r_child.postorder()
         print(self.key, end=" ")
 
+    def delete(self, data):
+        if self.key is None:
+            print("Tree is empty.")
+            return
+        if data < self.key:
+            if self.l_child:
+                self.l_child = self.l_child.delete(data)
+            else:
+                print('Required data not present in tree')
+        elif data > self.key:
+            if self.r_child:
+                self.r_child = self.r_child.delete(data)
+            else:
+                print('Required data not present in tree')
+        else:
+            if self.l_child is None:
+                temp = self.r_child
+                del self
+                return temp  # temp has right child of subtree, it is none, so it returns None to the parent tree left
+            if self.r_child is None:
+                temp = self.l_child
+                del self
+                return temp
+            node = self.r_child
+            while node.l_child:
+                node = node.l_child
+            self.key = node.key
+            self.r_child = self.r_child.delete(node.key)
+        return self
+
 
 root = BST(10)
 list_one = [30, 10, 60, 50, 80, 90, 0, 5]
@@ -75,6 +105,9 @@ for i in list_one:
 
 root.preorder()
 print()
-root.inorder()
+
+root.delete(20)
 print()
-root.postorder()
+
+root.preorder()
+print()

@@ -45,11 +45,26 @@ class BST:
                 print("Node is not present in the tree.")
 
     def preorder(self):
-        print(self.key)
+        print(self.key, end=" ")
         if self.l_child:
             self.l_child.preorder()
         if self.r_child:
             self.r_child.preorder()
+
+    def inorder(self):
+        if self.l_child:
+            self.l_child.inorder()
+        print(self.key, end=" ")
+
+        if self.r_child:
+            self.r_child.inorder()
+
+    def postorder(self):
+        if self.l_child:
+            self.l_child.postorder()
+        if self.r_child:
+            self.r_child.postorder()
+        print(self.key, end=" ")
 
 
 root = BST(10)
@@ -59,3 +74,7 @@ for i in list_one:
     root.insert(i)
 
 root.preorder()
+print()
+root.inorder()
+print()
+root.postorder()

@@ -66,35 +66,47 @@ class BST:
             self.r_child.postorder()
         print(self.key, end=" ")
 
-    def delete(self, data):
+    def delete(self, data, current):
         if self.key is None:
             print("Tree is empty.")
             return
         if data < self.key:
             if self.l_child:
-                self.l_child = self.l_child.delete(data)
+                self.l_child = self.l_child.delete(data, current)
             else:
                 print('Required data not present in tree')
         elif data > self.key:
             if self.r_child:
                 # after below recursion function, it returns NONE and is stored in the right of the parent node
-                self.r_child = self.r_child.delete(data)
+                self.r_child = self.r_child.delete(data, current)
             else:
                 print('Required data not present in tree')
         else:
             if self.l_child is None:
                 temp = self.r_child
+                if data == current:
+                    self.key = temp.key
+                    self.l_child = temp.l_child
+                    self.r_child = temp.r_child
+                    temp = None
+                    return
                 del self
                 return temp  # temp has right child of subtree, it is none, so it returns None to the parent tree left
             if self.r_child is None:
                 temp = self.l_child
+                if data == current:
+                    self.key = temp.key
+                    self.l_child = temp.l_child
+                    self.r_child = temp.r_child
+                    temp = None
+                    return
                 del self
                 return temp
             node = self.r_child
             while node.l_child:
                 node = node.l_child
             self.key = node.key
-            self.r_child = self.r_child.delete(node.key)
+            self.r_child = self.r_child.delete(node.key, current)
         return self
 
 
@@ -105,7 +117,7 @@ def count(nodes):
 
 
 root = BST(10)
-list_one = [30, 10, 60, 50, 80, 90, 0, 5]
+list_one = [5, 12, 20, 15, 40, 60, 45, 0, 40]
 
 for i in list_one:
     root.insert(i)
@@ -119,3 +131,11 @@ print()
 root.preorder()
 print()
 print(f'total nodes = {count(root)}')
+
+if count(root) > 1:
+    root.delete(10, root.key)
+else:
+    print('Cant perform deletion operation.')
+
+print()
+root.preorder()

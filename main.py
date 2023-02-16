@@ -77,6 +77,7 @@ class BST:
                 print('Required data not present in tree')
         elif data > self.key:
             if self.r_child:
+                # after below recursion function, it returns NONE and is stored in the right of the parent node
                 self.r_child = self.r_child.delete(data)
             else:
                 print('Required data not present in tree')
@@ -97,6 +98,12 @@ class BST:
         return self
 
 
+def count(nodes):
+    if nodes is None:
+        return 0
+    return 1 + count(nodes.l_child) + count(nodes.r_child)
+
+
 root = BST(10)
 list_one = [30, 10, 60, 50, 80, 90, 0, 5]
 
@@ -106,8 +113,9 @@ for i in list_one:
 root.preorder()
 print()
 
-root.delete(20)
-print()
+# root.delete(20)
+# print()
 
 root.preorder()
 print()
+print(f'total nodes = {count(root)}')
